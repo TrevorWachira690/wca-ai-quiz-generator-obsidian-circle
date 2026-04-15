@@ -15,7 +15,7 @@ except Exception:
 # ---------------------------------------------------
 # 🧠 STABLE MODEL (GUARANTEED AVAILABLE)
 # ---------------------------------------------------
-MODEL_NAME = "gemini-1.5-pro"
+MODEL_NAME = "gemini-1.5-flash-002"
 
 # ---------------------------------------------------
 # 📦 EXPECTED JSON FORMAT
@@ -41,7 +41,7 @@ response_format = {
 def call_gemini(prompt: str):
 
     try:
-        model = genai.GenerativeModel(MODEL_NAME)
+        model = genai.GenerativeModel("models/gemini-1.5-flash-002")
         response = model.generate_content(prompt)
         return response.text
 
