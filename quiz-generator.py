@@ -4,31 +4,31 @@ import google.generativeai as genai
 import json
 
 # ---------------------------------------------------
-# 🔐 SAFE API KEY LOADING (STREAMLIT CLOUD)
+# 🔐 API KEY (STREAMLIT CLOUD SAFE)
 # ---------------------------------------------------
-try:
-    genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-except Exception:
-    st.error("Missing API Key. Please add GOOGLE_API_KEY in Streamlit Secrets.")
+if "GOOGLE_API_KEY" not in st.secrets:
+    st.error("Missing API key. Add GOOGLE_API_KEY in Streamlit Secrets.")
     st.stop()
 
-# ---------------------------------------------------
-# 🧠 STABLE MODEL (GUARANTEED AVAILABLE)
-# ---------------------------------------------------
-MODEL_NAME = "gemini-1.5-flash-002"
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # ---------------------------------------------------
-# 📦 EXPECTED JSON FORMAT
+# 🧠 STABLE MODEL (CONFIRMED WORKING)
 # ---------------------------------------------------
-response_format = {
+MODEL_NAME = "models/gemini-1.5-flash-002"
+
+# ---------------------------------------------------
+# 📦 QUIZ FORMAT
+# ---------------------------------------------------
+JSON_FORMAT = {
     "mcqs": [
         {
-            "mcq": "question text",
+            "mcq": "Question here",
             "options": {
-                "a": "option 1",
-                "b": "option 2",
-                "c": "option 3",
-                "d": "option 4"
+                "a": "Option A",
+                "b": "Option B",
+                "c": "Option C",
+                "d": "Option D"
             },
             "correct": "a"
         }
@@ -36,40 +36,45 @@ response_format = {
 }
 
 # ---------------------------------------------------
-# 🤖 GEMINI CALL (NO CACHE = NO CLOUD ISSUES)
+# 🤖 GEMINI CALL
 # ---------------------------------------------------
-def call_gemini(prompt: str):
-
+def ask_gemini(prompt: str):
     try:
-        model = genai.GenerativeModel("models/gemini-1.5-flash-002")
+        model = genai.GenerativeModel(MODEL_NAME)
         response = model.generate_content(prompt)
         return response.text
-
     except Exception as e:
-        st.error(f"Gemini API Error: {e}")
+        st.error(f"Gemini Error: {e}")
         return ""
 
+# ---------------------------------------------------
+# 🧠 GENERATE QUIZ
+# ---------------------------------------------------
+def generate_quiz(input_text, level, mode):
 
-# ---------------------------------------------------
-# 🧠 PARAGRAPH QUIZ
-# ---------------------------------------------------
-def generate_from_paragraph(text, level):
+    if mode == "Paragraph":
+        instruction = "Create 5 MCQs from this paragraph."
+    else:
+        instruction = "Create 5 MCQs about this topic."
 
     prompt = f"""
-    You are an expert quiz generator.
+    You are a quiz generator AI.
 
-    Create 5 multiple choice questions from the paragraph below.
+    {instruction}
+
+    Input:
+    {input_text}
 
     Difficulty: {level}
 
-    Paragraph:
-    {text}
-
-    Return ONLY valid JSON in this format:
-    {json.dumps(response_format)}
+    Return ONLY valid JSON like this:
+    {json.dumps(JSON_FORMAT)}
     """
 
-    raw = call_gemini(prompt)
+    raw = ask_gemini(prompt)
+
+    if not raw:
+        return {"mcqs": []}
 
     cleaned = raw.replace("```json", "").replace("```", "").strip()
 
@@ -79,77 +84,49 @@ def generate_from_paragraph(text, level):
         st.error("Failed to parse AI response.")
         st.write(cleaned)
         return {"mcqs": []}
-
-
-# ---------------------------------------------------
-# 🧠 TOPIC QUIZ
-# ---------------------------------------------------
-def generate_from_topic(topic, level):
-
-    prompt = f"""
-    You are an expert quiz generator.
-
-    Create 5 multiple choice questions about this topic.
-
-    Topic: {topic}
-    Difficulty: {level}
-
-    Return ONLY valid JSON in this format:
-    {json.dumps(response_format)}
-    """
-
-    raw = call_gemini(prompt)
-
-    cleaned = raw.replace("```json", "").replace("```", "").strip()
-
-    try:
-        return json.loads(cleaned)
-    except:
-        st.error("Failed to parse AI response.")
-        st.write(cleaned)
-        return {"mcqs": []}
-
 
 # ---------------------------------------------------
 # 🎮 STREAMLIT UI
 # ---------------------------------------------------
 def main():
 
-    st.title("🧠 AI Quiz Generator (Gemini Powered)")
+    st.title("🧠 AI Quiz Generator (Gemini)")
 
-    # ---------------- INPUT MODE ----------------
+    # --- session state safe init ---
+    if "questions" not in st.session_state:
+        st.session_state.questions = []
+
+    if "generated" not in st.session_state:
+        st.session_state.generated = False
+
+    # --- input mode ---
     mode = st.radio("Choose input type:", ["Paragraph", "Topic"])
 
     if mode == "Paragraph":
-        user_input = st.text_area("Paste your paragraph here:", height=200)
+        user_input = st.text_area("Enter paragraph:", height=200)
     else:
-        user_input = st.text_input("Enter a topic:")
+        user_input = st.text_input("Enter topic:")
 
-    # ---------------- DIFFICULTY ----------------
-    level = st.selectbox("Select Difficulty:", ["Easy", "Medium", "Hard"])
+    level = st.selectbox("Difficulty:", ["Easy", "Medium", "Hard"])
 
-    # ---------------- GENERATE BUTTON ----------------
+    # --- generate ---
     if st.button("Generate Quiz"):
 
         if not user_input:
-            st.warning("Please enter input first.")
+            st.warning("Please enter input.")
             return
 
-        with st.spinner("Generating quiz..."):
-
-            if mode == "Paragraph":
-                data = generate_from_paragraph(user_input, level.lower())
-            else:
-                data = generate_from_topic(user_input, level.lower())
+        with st.spinner("Generating..."):
+            data = generate_quiz(user_input, level, mode)
 
             st.session_state.questions = data.get("mcqs", [])
             st.session_state.generated = True
 
-    # ---------------- QUIZ DISPLAY ----------------
-    if "generated" in st.session_state and st.session_state.generated:
+    # --- display quiz ---
+    if st.session_state.generated and st.session_state.questions:
 
-        score = 0
         answers = {}
+        score = 0
 
         for i, q in enumerate(st.session_state.questions):
 
@@ -158,13 +135,13 @@ def main():
             options = q["options"]
 
             answers[i] = st.radio(
-                f"Select answer for Q{i+1}",
+                "Select answer:",
                 list(options.keys()),
                 format_func=lambda x: f"{x}) {options[x]}",
                 key=f"q_{i}"
             )
 
-        # ---------------- SUBMIT ----------------
+        # --- submit ---
         if st.button("Submit Quiz"):
 
             for i, q in enumerate(st.session_state.questions):
