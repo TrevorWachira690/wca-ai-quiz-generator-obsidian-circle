@@ -9,7 +9,7 @@ from dotenv import load_dotenv      # Loads variables from a .env file
 load_dotenv()
 
 # Configure Gemini with your API key
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 
 # This defines the structure (format) we expect from Gemini's response
 response_format = {
