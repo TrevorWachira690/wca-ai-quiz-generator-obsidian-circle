@@ -15,7 +15,7 @@ except Exception:
 # ---------------------------------------------------
 # 🧠 STABLE MODEL (GUARANTEED AVAILABLE)
 # ---------------------------------------------------
-MODEL_NAME = "gemini-1.5-flash"
+MODEL_NAME = "gemini-1.5-flash-002"
 
 # ---------------------------------------------------
 # 📦 EXPECTED JSON FORMAT
