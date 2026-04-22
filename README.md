@@ -38,19 +38,20 @@ Constraints:
 One correct answer
 Fixed difficulty
 Output: Clean JSON format only
+
 ✅Technologies Used
 
-Python
-google.generativeai (AI integration)
-dotenv (API security)
-json (data handling)
+- Python
+- google.generativeai (AI integration)
+- dotenv (API security)
+- json (data handling)
 
- - Challenges & Solutions
+ Challenges & Solutions
 
-Incorrect JSON from AI → Enforced strict prompt + cleaned output
-Invalid user input → Added validation
-API key exposure risk → Used .env file
-Logic errors → Fixed program flow
+- Incorrect JSON from AI → Enforced strict prompt + cleaned output
+- Invalid user input → Added validation
+- API key exposure risk → Used .env file
+- Logic errors → Fixed program flow
 
   ✅Ethics
 
