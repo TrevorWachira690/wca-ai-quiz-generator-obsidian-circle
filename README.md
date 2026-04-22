@@ -21,12 +21,12 @@ The system automates quiz creation by:
 
 ✅ How It Works
 
-User selects input type (topic or paragraph)
-Enters content
-Chooses difficulty level
-System sends a structured prompt to AI
-AI returns questions in JSON format
-User answers questions and receives a score
+- User selects input type (topic or paragraph)
+- Enters content
+- Chooses difficulty level
+- System sends a structured prompt to AI
+- AI returns questions in JSON format
+- User answers questions and receives a score
 
  ✅AI Design (R-T-C-C-O Framework)
 
