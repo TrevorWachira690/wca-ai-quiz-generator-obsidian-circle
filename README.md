@@ -66,12 +66,12 @@ Conclusion
 The project demonstrates how AI and prompt engineering can automate quiz generation efficiently, saving time and improving learning experiences.
 
 Future Improvements
-Add a method of data storage of previous questions asked.
-Add a method of rewarding users who have higher scores.
-Make the tool have a capability of reading through pdf files or txt files so that it can obtain questions from it.
-Make the tool accessible to other users through browsers by making it into a live website.
-Make the tool provide solid explanations about each choice rather than just providing the correct choice.
-Make the tool have a leader board for the users as they answer questions more frequently.
+- Add a method of data storage of previous questions asked.
+- Add a method of rewarding users who have higher scores.
+- Make the tool have a capability of reading through pdf files or txt files so that it can obtain questions from it.
+- Make the tool accessible to other users through browsers by making it into a live website.
+- Make the tool provide solid explanations about each choice rather than just providing the correct choice.
+- Make the tool have a leader board for the users as they answer questions more frequently.
 
 -Web app (Streamlit)
 -Score tracking & leaderboard
