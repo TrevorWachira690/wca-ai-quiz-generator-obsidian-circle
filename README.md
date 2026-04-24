@@ -56,11 +56,14 @@ Return ONLY valid JSON in the following structure:
 > Reference to comments used on the codescript
 
 ## 6. Challenges & Solutions
+These are some of the errors that we encountered when running the code of the tool:
 
-- Incorrect JSON from AI → Enforced strict prompt + cleaned output
-- Invalid user input → Added validation
-- API key exposure risk → Used .env file
-- Logic errors → Fixed program flow
+|Challenge|Solution|
+|---------|--------|
+|API Key error|Using a .gitignore file to prevent exposure of API key|
+|Complications from using streamlit|Used the terminal to run it instead|
+|Unresolveable merge conflicts|Made commits one by one before editing anything else|
+|User could use different values for input|The tool returns an error message when different values are used|
 
 ## 7. Ethics Reflection
 Bias: AI may generate biased questions → use neutral prompts
