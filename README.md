@@ -1,13 +1,13 @@
 # WCA-AI-QUIZ-GENERATOR
 
-## 1.Coverpage
+## 1. Coverpage
 - Group name=Obsidian Circle
 - Member names=Trevor Mbiriri, Cindy Joy, Mary Ayako, Blessy Muigai, Peace Mwende
 - Github link= https://github.com/TrevorWachira690/wca-ai-quiz-generator-obsidian-circle.git
 - Tool name= Obsidian Circle Quiz Generator
 - Date= 26th April 2026
 
-## 2.Problem Statement
+## 2. Problem Statement
 Creating quiz questions manually is usually:
 - Time-consuming
 - Difficult without structured materials
@@ -32,14 +32,25 @@ This also benefits students who are revising coursework or even self learners wh
 
 ## 4. AI Instruction Design (R-T-C-C-O Framework)
 
-Role: AI acts as an expert quiz generator
-Task: Generate 5 MCQs
-Context: Based on user input
+Role:
+You are an expert quiz generator that creates high-quality multiple choice questions.
+
+Task:
+Generate 5 multiple choice questions based on the given topic.
+
+Context:
+- Difficulty level: {quiz_level}
+- Topic: {prompt_text}
+
 Constraints:
-4 options per question
-One correct answer
-Fixed difficulty
-Output: Clean JSON format only
+- Each question must have exactly 4 options (a, b, c, d)
+- Only one correct answer per question
+- Questions must match the specified difficulty level
+- Do NOT include explanations
+- Do NOT include any text outside the JSON format
+
+Output:
+Return ONLY valid JSON in the following structure:
 
 ## 5. Technical overview (How the code works)
 > Reference to comments used on the codescript
