@@ -53,22 +53,57 @@ Output:
 Return ONLY valid JSON in the following structure:
 
 ## 5. Technical overview (How the code works)
-1. First, the tool imports the required libraaries (google.generativeai, os, JSON)
-2. It then loads an API key from a .env file, whch is then connected to gemini AI
-3. We then create a response format wwich the AI model should follow when returning questions.
-4. Then we create a function which generates questions using Gemini with its stated parameters
-5. The AI model is then created after creating the function above.
-6. We then build a prompt which follows the R-T-C-C-O framework. This prompt will be sent to the AI model so that it can generate questions, multiple chices and the correct answer for the user. Inside this prompt, we have variables such as quiz_level and prompt_text which are given certain values by the user.
-7. The prompt is then sent to Gemini AI and the tool receives a response
-8. The response text is then cleaned because our AI model can wrap the JSON in certain markdowns
-9. Afterwards, the JSON is converted into a python dictionary and incase of an error, an error message is displayed.
-10. The main programe then runs under the function **main()**
-11. First, the program displays the title, which is the name of our tool
-12. It then asks the user what input they want to put in (Either a paragraph or a topic) **Incase the user puts a different input, the program sends an error message and asks the user to put the right input**
-13. After selecting, the user either pastes their selected input choice or types it out on the input area.
-14. The program then asks the user the difficulty that they prefer.
-15. Afterwards, the function to get quiz data from gemini is called, and given a variable called data, If anything went wrong in between, for example a JSON parsing failure, the program stops.
-16. ...
+### Workflow Overview
+
+This is how the quiz generator runs from start to finish:
+
+### 1. Setup & Configuration
+
+The program begins by loading environment variables using `load_dotenv()`. It then retrieves the Gemini API key using `os.getenv()` and uses it to configure the Gemini AI client.
+
+### 2. User Input
+
+The user is prompted to choose the type of input:
+
+* Paragraph (paste text)
+* Topic (enter a subject)
+
+After that, the user selects a difficulty level: `easy`, `medium`, or `hard`.
+
+### 3. Prompt Creation
+
+The program constructs a structured prompt using the R-T-C-C-O framework:
+
+* Role → Expert quiz generator
+* Task → Generate 5 multiple choice questions
+* Context → Topic/paragraph and difficulty level
+* Constraints → 4 options, 1 correct answer, no explanations, strict format
+* Output → JSON structure
+
+### 4. AI Processing (Gemini)
+
+The constructed prompt is sent to the Gemini model (`gemini-2.5-flash-lite`), which generates quiz questions in JSON format.
+
+### 5. Response Cleaning & Parsing
+
+The program removes any markdown formatting (such as ```json) from the response. It then converts the cleaned JSON string into a Python dictionary using `json.loads()`.
+
+### 6. Quiz Execution
+
+The program loops through each question:
+
+* Displays the question and answer options
+* Accepts the user’s answer
+* Checks if the answer is correct
+* Updates the score accordingly
+
+### 7. Final Output
+
+After all questions are answered, the program displays the final score (e.g., `Final Score: 4/5`).
+
+### 8. Error Handling
+
+If the JSON parsing fails, the program displays an error message: `"Error parsing quiz. Try again."` and safely stops execution.
 
 ## 6. Challenges & Solutions
 These are some of the errors that we encountered when running the code of the tool:
