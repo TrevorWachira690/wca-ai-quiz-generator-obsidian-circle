@@ -56,7 +56,8 @@ Return ONLY valid JSON in the following structure:
 
 ### 1. Setup & Configuration
 
-The program begins by loading environment variables using `load_dotenv()`. It then retrieves the Gemini API key using `os.getenv()` and uses it to configure the Gemini AI client.
+The program begins by loading environment variables using `load_dotenv()`.
+It then retrieves the Gemini API key using `os.getenv()` and uses it to configure the Gemini AI client.
 
 ### 2. User Input
 
@@ -112,7 +113,7 @@ If the JSON parsing fails, the program displays an error message: `"Error parsin
 Bias: AI may generate biased questions, so use neutral prompts.
 Privacy: No user data is stored.
 Responsibility: Output should be reviewed for accuracy.
-
+users submits a paragraph or dataset description,the tool returns an analysis of potential AI or data bias using a designed prompt.
 ## 8. Conclusion and future improvements
 In the future, we plan to add some improvents to the tool such as:
 - Add a method of data storage of previous questions asked.
