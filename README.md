@@ -2,7 +2,7 @@
 
 ## 1. Coverpage
 - Group name=Obsidian Circle
-- Member names=Trevor Mbiriri, Cindy Joy, Mary Ayako, Blessy Muigai, Peace Mwende
+- Member names=Trevor Mbiriri, Joy Cindy, Mary Ayako, Blessy Muigai, Peace Mwende
 - Github link= https://github.com/TrevorWachira690/wca-ai-quiz-generator-obsidian-circle.git
 - Tool name= Obsidian Circle Quiz Generator
 - Date= 26th April 2026
