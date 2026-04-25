@@ -58,7 +58,7 @@ Return ONLY valid JSON in the following structure:
 
 The program begins by loading environment variables using `load_dotenv()`.
 It then retrieves the Gemini API key using `os.getenv()` and uses it to configure the Gemini AI client.
-
+It then ensures the AI answers are anticipated and simple to process later.
 ### 2. User Input
 
 The user is prompted to choose the type of input; Paragraph or Topic
