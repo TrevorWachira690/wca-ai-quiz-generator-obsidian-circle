@@ -53,9 +53,6 @@ Output:
 Return ONLY valid JSON in the following structure:
 
 ## 5. Technical overview (How the code works)
-### Workflow Overview
-
-This is how the quiz generator runs from start to finish:
 
 ### 1. Setup & Configuration
 
@@ -63,10 +60,7 @@ The program begins by loading environment variables using `load_dotenv()`. It th
 
 ### 2. User Input
 
-The user is prompted to choose the type of input:
-
-* Paragraph (paste text)
-* Topic (enter a subject)
+The user is prompted to choose the type of input; Paragraph or Topic
 
 After that, the user selects a difficulty level: `easy`, `medium`, or `hard`.
 
@@ -86,7 +80,7 @@ The constructed prompt is sent to the Gemini model (`gemini-2.5-flash-lite`), wh
 
 ### 5. Response Cleaning & Parsing
 
-The program removes any markdown formatting (such as ```json) from the response. It then converts the cleaned JSON string into a Python dictionary using `json.loads()`.
+Any markdown formatting (such as ```json) is removed from the response. The program then converts the cleaned JSON string into a Python dictionary using `json.loads()`.
 
 ### 6. Quiz Execution
 
@@ -106,7 +100,6 @@ After all questions are answered, the program displays the final score (e.g., `F
 If the JSON parsing fails, the program displays an error message: `"Error parsing quiz. Try again."` and safely stops execution.
 
 ## 6. Challenges & Solutions
-These are some of the errors that we encountered when running the code of the tool:
 
 |Challenge|Solution|
 |---------|--------|
@@ -116,18 +109,18 @@ These are some of the errors that we encountered when running the code of the to
 |User could use different values for input|The tool returns an error message when different values are used|
 
 ## 7. Ethics Reflection
-Bias: AI may generate biased questions → use neutral prompts
-Privacy: No user data stored
-Responsibility: Output should be reviewed for accuracy
+Bias: AI may generate biased questions, so use neutral prompts.
+Privacy: No user data is stored.
+Responsibility: Output should be reviewed for accuracy.
 
 ## 8. Conclusion and future improvements
 In the future, we plan to add some improvents to the tool such as:
 - Add a method of data storage of previous questions asked.
 - Add a method of rewarding users who have higher scores.
-- Make the tool have a capability of reading through pdf files or txt files so that it can obtain questions from it.
-- Make the tool accessible to other users through browsers by making it into a live website.
-- Make the tool provide solid explanations about each choice rather than just providing the correct choice.
-- Make the tool have a leader board for the users as they answer questions more frequently.
+- Enable the tool to read through pdf files or txt files so that it can obtain questions from it.
+- Make the tool accessible to other users through browsers by making it a live website.
+- Program the tool to provide solid explanations about each choice rather than just providing the correct choice.
+- Design a leader board for the users as they answer questions more frequently.
 
 ## 9. Appendix
 
