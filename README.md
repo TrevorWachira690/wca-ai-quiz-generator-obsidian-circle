@@ -53,7 +53,22 @@ Output:
 Return ONLY valid JSON in the following structure:
 
 ## 5. Technical overview (How the code works)
-> Reference to comments used on the codescript
+1. First, the tool imports the required libraaries (google.generativeai, os, JSON)
+2. It then loads an API key from a .env file, whch is then connected to gemini AI
+3. We then create a response format wwich the AI model should follow when returning questions.
+4. Then we create a function which generates questions using Gemini with its stated parameters
+5. The AI model is then created after creating the function above.
+6. We then build a prompt which follows the R-T-C-C-O framework. This prompt will be sent to the AI model so that it can generate questions, multiple chices and the correct answer for the user. Inside this prompt, we have variables such as quiz_level and prompt_text which are given certain values by the user.
+7. The prompt is then sent to Gemini AI and the tool receives a response
+8. The response text is then cleaned because our AI model can wrap the JSON in certain markdowns
+9. Afterwards, the JSON is converted into a python dictionary and incase of an error, an error message is displayed.
+10. The main programe then runs under the function **main()**
+11. First, the program displays the title, which is the name of our tool
+12. It then asks the user what input they want to put in (Either a paragraph or a topic) **Incase the user puts a different input, the program sends an error message and asks the user to put the right input**
+13. After selecting, the user either pastes their selected input choice or types it out on the input area.
+14. The program then asks the user the difficulty that they prefer.
+15. Afterwards, the function to get quiz data from gemini is called, and given a variable called data, If anything went wrong in between, for example a JSON parsing failure, the program stops.
+16. ...
 
 ## 6. Challenges & Solutions
 These are some of the errors that we encountered when running the code of the tool:
