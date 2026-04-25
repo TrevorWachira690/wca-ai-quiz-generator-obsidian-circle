@@ -39,7 +39,7 @@ Task:
 Generate 5 multiple choice questions based on the given topic.
 
 Context:
-- Difficulty level: {quiz_level}
+- Difficult level: {quiz_level}
 - Topic: {prompt_text}
 
 Constraints:
