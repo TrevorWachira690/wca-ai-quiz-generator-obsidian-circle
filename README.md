@@ -86,7 +86,7 @@ Privacy: No user data stored
 Responsibility: Output should be reviewed for accuracy
 
 ## 8. Conclusion and future improvements
-Im the future, we plan to add some improvents to the tool such as:
+In the future, we plan to add some improvents to the tool such as:
 - Add a method of data storage of previous questions asked.
 - Add a method of rewarding users who have higher scores.
 - Make the tool have a capability of reading through pdf files or txt files so that it can obtain questions from it.
