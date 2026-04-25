@@ -25,10 +25,10 @@ This also benefits students who are revising coursework or even self learners wh
 ## 3. Tool description(How It Works)
 1. The user selects an input type (Either Topic or paragraph)
 2. User selects a difficulty level(Easy, Medium or Hard)
-3. The system sends a structured prompt to the AI
-4. The AI returns quiz questions.
-6. It then displays those questions and accepts the users answers
-7. It then compares the users answers with the actual answers and calculates the final score
+3. The system sends a structured prompt to the AI model.
+4. The AI model responds by displaying quiz questions.
+6. It then accepts the users answers.
+7. After, it compares the user's answers with the actual answers and calculates the final score
 
 ## 4. AI Instruction Design (R-T-C-C-O Framework)
 
