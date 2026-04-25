@@ -28,7 +28,7 @@ This also benefits students who are revising coursework or even self learners wh
 3. The system sends a structured prompt to the AI model.
 4. The AI model responds by displaying quiz questions.
 6. It then accepts the users answers.
-7. After, it compares the user's answers with the actual answers and calculates the final score
+7. After, it compares the user's answers with the actual answers and calculates the final score.
 
 ## 4. AI Instruction Design (R-T-C-C-O Framework)
 
