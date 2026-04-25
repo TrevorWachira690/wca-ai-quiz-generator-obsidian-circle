@@ -11,13 +11,14 @@
 Creating quiz questions manually is usually:
 - Time-consuming
 - Difficult without structured materials
-- Limited in customization in existing tools
+- Prone to subject bias, leaving gaps in overall assessment
 
 However, this tool automates quiz creation by:
 
 - Generating MCQs instantly
 - Allowing difficulty selection (Easy, Medium, Hard)
 - Providing structured questions with answers
+- Generating 'plausible distractors' - wrong answers challenging the student
 
 This benefits professionals such as teachers or even examiners since they'll spend less time on conducting research so as to provide questions to their students. 
 This also benefits students who are revising coursework or even self learners who are exploring new topics.
