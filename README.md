@@ -33,7 +33,7 @@ This also benefits students who are revising coursework or even self learners wh
 ## 4. AI Instruction Design (R-T-C-C-O Framework)
 
 Role:
-You are an expert quiz generator that creates high-quality multiple choice questions.
+You are an expert quiz generator that creates high-quality multiple choices questions.
 
 Task:
 Generate 5 multiple choice questions based on the given topic.
